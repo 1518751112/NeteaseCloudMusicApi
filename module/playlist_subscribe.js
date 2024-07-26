@@ -1,5 +1,6 @@
 // 收藏与取消收藏歌单
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   query.t = query.t == 1 ? 'subscribe' : 'unsubscribe'
   const data = {
@@ -7,13 +8,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/playlist/${query.t}`,
+    `/api/playlist/${query.t}`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

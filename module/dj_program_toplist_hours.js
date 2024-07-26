@@ -1,4 +1,5 @@
 // 电台24小时节目榜
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     limit: query.limit || 100,
@@ -6,13 +7,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/djprogram/toplist/hours`,
+    `/api/djprogram/toplist/hours`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

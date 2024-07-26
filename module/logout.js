@@ -1,16 +1,14 @@
 // 退出登录
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   return request(
     'POST',
-    `https://music.163.com/weapi/logout`,
+    `/api/logout`,
     {},
     {
-      crypto: 'weapi',
-      ua: 'pc',
-      cookie: query.cookie,
-      proxy: query.proxy,
-      realIP: query.realIP,
+      ...createOption(query, 'weapi'),
+      uaType: 'pc',
     },
   )
 }

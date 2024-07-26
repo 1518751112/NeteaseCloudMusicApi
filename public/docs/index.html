@@ -25,24 +25,24 @@
   window.$docsify = {
     name: '网易云音乐 API',
     repo: 'https://github.com/1518751112/NeteaseCloudMusicApi',
-      coverpage: '../_coverpage.md',
-      search: {
-          placeholder: '搜索',
-          noData: '找不到结果',
-          depth: 2, // 搜索标题的最大层级, 1 - 6
-          namespace: 'docsify',
-          pathNamespaces: ['/zh-cn'],
-      },
-      homepage: "../README.md"
+    coverpage: '../_coverpage.md',
+    search: {
+      placeholder: '搜索',
+      noData: '找不到结果',
+      depth: 2, // 搜索标题的最大层级, 1 - 6
+      namespace: 'docsify',
+      pathNamespaces: ['/zh-cn'],
+    },
+    homepage: '../home.md',
   }
 </script>
 <script src="./docsify.min.js"></script>
 <script src="./sw.js"></script>
-<!--<script>
+<script>
   if (typeof navigator.serviceWorker !== 'undefined') {
-    navigator.serviceWorker.register('./sw.js')
+    navigator.serviceWorker.register('sw.js')
   }
-</script>-->
+</script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="./qtag.js"></script>
 <script>

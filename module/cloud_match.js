@@ -1,6 +1,5 @@
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
-  query.cookie.os = 'ios'
-  query.cookie.appver = '8.20.21'
   const data = {
     userId: query.uid,
     songId: query.sid,
@@ -8,13 +7,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/cloud/user/song/match`,
+    `/api/cloud/user/song/match`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

@@ -1,3 +1,4 @@
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     userTaskId: query.userTaskId,
@@ -5,13 +6,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/usertool/task/point/receive`,
+    `/api/usertool/task/point/receive`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

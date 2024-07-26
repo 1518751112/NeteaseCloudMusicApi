@@ -1,8 +1,10 @@
 const { resourceTypeMap } = require('../util/config.json')
 // 热门评论
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
+  query.cookie.appver = '2.9.7'
   query.type = resourceTypeMap[query.type]
   const data = {
     rid: query.id,
@@ -12,13 +14,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/v1/resource/hotcomments/${query.type}${query.id}`,
+    `/api/v1/resource/hotcomments/${query.type}${query.id}`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

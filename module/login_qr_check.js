@@ -1,3 +1,4 @@
+const createOption = require('../util/option.js')
 module.exports = async (query, request) => {
   const data = {
     key: query.key,
@@ -6,14 +7,9 @@ module.exports = async (query, request) => {
   try {
     let result = await request(
       'POST',
-      `https://music.163.com/weapi/login/qrcode/client/login`,
+      `/api/login/qrcode/client/login`,
       data,
-      {
-        crypto: 'weapi',
-        cookie: query.cookie,
-        proxy: query.proxy,
-        realIP: query.realIP,
-      },
+      createOption(query, 'weapi'),
     )
     result = {
       status: 200,

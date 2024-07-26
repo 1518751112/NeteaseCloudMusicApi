@@ -1,5 +1,6 @@
 // 一起听 发送心跳
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     roomId: query.roomId,
@@ -9,14 +10,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `http://interface.music.163.com/eapi/listen/together/heartbeat`,
+    `/api/listen/together/heartbeat`,
     data,
-    {
-      crypto: 'eapi',
-      cookie: query.cookie,
-      proxy: query.proxy,
-      realIP: query.realIP,
-      url: '/api/listen/together/heartbeat',
-    },
+    createOption(query),
   )
 }

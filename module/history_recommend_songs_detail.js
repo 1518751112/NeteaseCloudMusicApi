@@ -1,5 +1,6 @@
 // 历史每日推荐歌曲详情
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   query.cookie.os = 'ios'
   const data = {
@@ -7,13 +8,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/discovery/recommend/songs/history/detail`,
+    `/api/discovery/recommend/songs/history/detail`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }
