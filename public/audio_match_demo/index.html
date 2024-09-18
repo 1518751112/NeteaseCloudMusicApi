@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <head>
+  <meta charset="UTF-8" />
   <style>
     * {
       font-family: sans-serif;
@@ -80,6 +81,7 @@
 
   function RecorderCallback(channelL) {
     let sampleBuffer = new Float32Array(channelL.subarray(0, duration * 8000))
+    console.log("sampleBuffer", duration)
     GenerateFP(sampleBuffer).then(FP => {
       logs.write(`[index] Generated FP ${FP}`)
       logs.write('[index] Now querying, please wait...')
